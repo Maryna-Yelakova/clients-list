@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css">
+        <!-- js -->
+        <!-- load the dependencies -->
+        <script src="assets/libs/core-js/client/shim.min.js"></script>
+        <script src="assets/libs/zone.js/dist/zone.js"></script>
+        <script src="assets/libs/reflect-metadata/Reflect.js"></script>
+        <script src="assets/libs/systemjs/dist/system.src.js"></script>
+        <script src="systemjs.config.js"></script>
+        <script>
+            System
+                    .import('systemjs.config.js')
+                    .then(function() {
+                        System.import('app');
+                    })
+                    .catch(console.error.bind(console));
+        </script>
+        <title>Clients-list</title>
+    </head>
+    <body class="container">
+            <clients-list>Loading...</clients-list>
+    </body>
+</html>
