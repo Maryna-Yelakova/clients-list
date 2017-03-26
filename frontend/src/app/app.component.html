@@ -12,7 +12,28 @@
     </nav>
 </header>
 <main>
-    <h1>Clients-list will be here</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <div *ngIf="clients">
+                <ul class="list-group clients-list">
+                    <li class="list-group-item"
+                        *ngFor="let client of clients"
+                        (click)="selectClient(client)"
+                        [class.active]="client === activeClient">
+                        <img src="{{ client.general.avatar }}" alt="" class="mini-avatar">
+                        {{ client.general.firstName }} {{ client.general.lastName }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <client-profile [client]="activeClient"></client-profile>
+            <div class="jumbotron" *ngIf="!activeClient">
+                <span class="glyphicon glyphicon-hand-left"></span>
+                <h2>Choose a Client</h2>
+            </div>
+        </div>
+    </div>
 </main>
 <footer class="text-center">
     Designed by Maryna Yelakova

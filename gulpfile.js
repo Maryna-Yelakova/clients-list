@@ -5,6 +5,7 @@ const gulp         = require('gulp'),
       watch        = require('gulp-watch'),
       rename       = require('gulp-rename'),
       sourcemaps   = require('gulp-sourcemaps'),
+      cleancss     = require('gulp-clean-css'),
       autoprefixer = require('gulp-autoprefixer'),
       tsc          = require('gulp-typescript'),
       tsproject    = tsc.createProject('tsconfig.json'),
@@ -16,6 +17,7 @@ const path = {
   src: {
     libs: './node_modules/**',
     sysjs: './systemjs.config.js',
+    appcss: './frontend/src/app/style/*.css',
     appts: './frontend/src/app/**/*.ts',
     apphtml: './frontend/src/app/**/*.html',
     html: './index.html'
@@ -23,6 +25,7 @@ const path = {
   build: {
     libs: './build/assets/libs/',
     sysjs: './build/',
+    appcss: './build/app/css/',
     appts: './build/app/',
     apphtml: './build/app/',
     html: './build/',
@@ -30,8 +33,9 @@ const path = {
   },
   watch: {
     sysjs: './systemjs.config.js',
-    appts: './src/app/**/*.ts',
-    apphtml: './src/app/**/*.html',
+    appcss: './frontend/src/app/**/*.css',
+    appts: './frontend/src/app/**/*.ts',
+    apphtml: './frontend//src/app/**/*.html',
     html: './index.html'
   },
   clean: {
@@ -73,6 +77,18 @@ gulp.task('app:ts', function() {
     .pipe(reload({stream: true}));
 });
 
+gulp.task('app:css', function () {
+  return gulp
+      .src(path.src.appcss)
+      .pipe(autoprefixer({
+        browsers: ['last 2 versions']
+      }))
+      .pipe(cleancss())
+      .pipe(gulp.dest(path.build.appcss))
+      .pipe(reload({stream: true}));
+
+});
+
 gulp.task('app:html', function() {
   return gulp
           .src(path.src.apphtml)
@@ -91,6 +107,7 @@ gulp.task('build', gulpsync.sync([
   'libs',
   'sysjs',
   'app:ts',
+  'app:css',
   'app:html',
   'index:html'
 ]));
@@ -98,6 +115,7 @@ gulp.task('build', gulpsync.sync([
 gulp.task('watch', function() {
   watch([path.watch.sysjs],   function() { gulp.start('sysjs'); });
   watch([path.watch.appts],   function() { gulp.start('app:ts'); });
+  watch([path.watch.appcss],   function() { gulp.start('app:css'); });
   watch([path.watch.apphtml], function() { gulp.start('app:html'); });
   watch([path.watch.html],    function() { gulp.start('index:html'); });
 });

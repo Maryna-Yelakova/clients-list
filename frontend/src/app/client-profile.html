@@ -1,0 +1,47 @@
+<div class="container" *ngIf="client" >
+
+    <div class="col-sm-6">
+        <img src="{{client.general.avatar}}" alt="">
+        <h2>{{ client.general.firstName }} {{ client.general.lastName }}</h2>
+        <h4> {{client.job.title}} at {{client.job.company}}</h4>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="row">
+            <div>
+                <div class="h3">Contact information</div>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Email</td>
+                            <td><span>{{client.contact.email}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td><span>{{client.contact.phone}}</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">Address</td>
+                            <td><span ></span></td>
+                        </tr>
+                        <tr>
+                            <td>Street</td>
+                            <td><span >{{client.address.street}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td><span >{{client.address.city}}</span></td>
+                        <tr>
+                            <td>Zip code</td>
+                            <td><span >{{client.address.zipCode}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td><span >{{client.address.country}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
