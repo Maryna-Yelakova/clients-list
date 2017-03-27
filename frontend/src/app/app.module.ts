@@ -7,7 +7,8 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent }  from './app.component';
 import { ClientsService } from './clients.service';
 import { InMemClientsService }     from './clients.db';
-import { ClientProfileComponent } from './client-profile'
+import { SearchPipe } from './search.pipe';
+import { ClientProfileComponent } from './client-profile.component';
 
 
 @NgModule({
@@ -16,12 +17,12 @@ import { ClientProfileComponent } from './client-profile'
         FormsModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemClientsService)
-
     ],
 
     declarations: [
         AppComponent,
-        ClientProfileComponent
+        ClientProfileComponent,
+        SearchPipe
     ],
     providers: [ClientsService],
     bootstrap:    [ AppComponent ]

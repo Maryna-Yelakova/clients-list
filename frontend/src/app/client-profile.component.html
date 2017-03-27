@@ -1,11 +1,9 @@
 <div class="container" *ngIf="client" >
-
     <div class="col-sm-6">
         <img src="{{client.general.avatar}}" alt="">
         <h2>{{ client.general.firstName }} {{ client.general.lastName }}</h2>
         <h4> {{client.job.title}} at {{client.job.company}}</h4>
     </div>
-
     <div class="col-sm-8">
         <div class="row">
             <div>

@@ -11,7 +11,9 @@ import {Client} from './client';
 export  class AppComponent implements OnInit{
 
     client: Client;
-    constructor(private clientsService: ClientsService){}
+
+    constructor(private clientsService: ClientsService){
+    }
 
     public clients: any;
 
@@ -29,7 +31,7 @@ export  class AppComponent implements OnInit{
 
     selectClient(client) {
         this.activeClient = client;
-        console.log(this.activeClient);
     }
+    
 }
 

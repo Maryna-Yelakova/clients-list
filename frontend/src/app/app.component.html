@@ -2,11 +2,11 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <form class="navbar-form navbar-left" role="search">
+                <div class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Search" type="text">
+                        <input class="form-control" placeholder="Search"  [(ngModel)]="search"/>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
@@ -17,11 +17,12 @@
             <div *ngIf="clients">
                 <ul class="list-group clients-list">
                     <li class="list-group-item"
-                        *ngFor="let client of clients"
+                        *ngFor="let client of (clients | searchPipe:'client':search)"
                         (click)="selectClient(client)"
                         [class.active]="client === activeClient">
                         <img src="{{ client.general.avatar }}" alt="" class="mini-avatar">
                         {{ client.general.firstName }} {{ client.general.lastName }}
+                        <small>{{client.job.title }}</small>
                     </li>
                 </ul>
             </div>
